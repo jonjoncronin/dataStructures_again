@@ -6,4 +6,7 @@ cxx_test(
     deps = [
         '//llist:llist',
     ],
+    compiler_flags = [
+        '-g',
+    ],
 )

@@ -2,8 +2,23 @@
 #include <gtest/gtest.h>
 #include <llist/llist.h>
 
+
 TEST(LinkedListTest, HappyAdd) {
-  ASSERT_EQ(0,0);
+  llist_node *someList;
+  llist_node headNode = {0};
+  llist_node newNode = {0};
+
+  headNode.data = 0;
+  headNode.next = NULL;
+  someList = &headNode;
+
+  newNode.data = 1;
+  newNode.next = NULL;
+
+  ASSERT_EQ(1, llist_addToHead(&newNode, &someList));
+  ASSERT_EQ(&newNode, someList);
+
+  llist_printList(someList);
 }
 
 TEST(LinkedListTest, AddNullNode) {
@@ -14,16 +29,26 @@ TEST(LinkedListTest, AddNodeToNullList) {
   ASSERT_EQ(0,0);
 }
 
-TEST(LinkedListTest, AddToHead) {
-  ASSERT_EQ(0,0);
-}
-
 TEST(LinkedListTest, AddToTail) {
   ASSERT_EQ(0,0);
 }
 
 TEST(LinkedListTest, HappyGetLength) {
-  ASSERT_EQ(0,0);
+  llist_node *someList;
+  llist_node headNode = {0};
+  llist_node newNode = {0};
+
+  headNode.data = 0;
+  headNode.next = NULL;
+  someList = &headNode;
+
+  newNode.data = 1;
+  newNode.next = NULL;
+
+  ASSERT_EQ(1, llist_addToHead(&newNode, &someList));
+  ASSERT_EQ(&newNode, someList);
+  ASSERT_EQ(2, llist_getLength(someList));
+  llist_printList(someList);
 }
 
 TEST(LinkedListTest, GetLengthNullList) {
@@ -31,10 +56,6 @@ TEST(LinkedListTest, GetLengthNullList) {
 }
 
 TEST(LinkedListTest, RemoveAll) {
-  ASSERT_EQ(0,0);
-}
-
-TEST(LinkedListTest, PrintList) {
   ASSERT_EQ(0,0);
 }
 

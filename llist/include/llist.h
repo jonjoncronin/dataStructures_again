@@ -15,12 +15,13 @@ typedef struct _llist_node
   struct _llist_node *next;
 } llist_node;
 
-extern int llist_addToHead(llist_node *newNode, llist_node *listHead);
-extern int llist_addToTail(llist_node *newNode, llist_node *listHead);
-extern int llist_getLength(llist_node *listHead);
+extern int llist_addToHead(llist_node *newNode, llist_node **listHead);
+extern int llist_addToTail(llist_node *newNode, llist_node **listHead);
+extern int llist_getLength(const llist_node *listHead);
 extern int llist_removeAll(llist_node *listHead);
+extern void llist_printList(const llist_node *listHead);
 
-extern int llist_containsCycle(llist_node *listHead);
+extern int llist_containsCycle(const llist_node *listHead);
 extern llist_node* llist_reverse(llist_node *listHead);
 
 #ifdef __cplusplus

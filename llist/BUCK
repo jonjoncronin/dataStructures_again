@@ -10,4 +10,7 @@ cxx_library(
     visibility = [
         '//...',
     ],
+    compiler_flags = [
+        '-g',
+    ],
 )
