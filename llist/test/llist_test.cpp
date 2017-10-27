@@ -3,47 +3,19 @@
 #include <llist/llist.h>
 
 
-TEST(LinkedListTest, HappyAdd) {
-  llist_node *someList;
-  llist_node headNode = {0};
+TEST(LinkedListTest, HappyAddToHeadEmpty) {
+  llist_node *someList = {0};
+  int data = 1;
 
-  headNode.data = 0;
-  headNode.next = NULL;
-  someList = &headNode;
-
-
-  ASSERT_EQ(1, llist_addToHead(1, &someList));
-  ASSERT_NE(&headNode, someList);
+  ASSERT_EQ(1, llist_addToHead(data, &someList));
   llist_printList(someList);
 }
 
-TEST(LinkedListTest, AddToTail) {
-  llist_node *someList;
-  llist_node headNode = {0};
-
-  headNode.data = 0;
-  headNode.next = NULL;
-  someList = &headNode;
-
-  ASSERT_EQ(1, llist_addToTail(1, &someList));
-  ASSERT_EQ(&headNode, someList);
+TEST(LinkedListTest, HappyAddToTailEmpty) {
+  llist_node *someList = {0};
+  int data = 1;
+  ASSERT_EQ(1, llist_addToTail(data, &someList));
   llist_printList(someList);
-}
-
-TEST(LinkedListTest, AddToHeadEmptyList) {
-  llist_node *someList = NULL;
-
-  ASSERT_EQ(0, someList);
-  ASSERT_EQ(1, llist_addToHead(1, &someList));
-  llist_printList(someList);
-}
-
-TEST(LinkedListTest, AddToTailEmptyList) {
-  llist_node *someList = NULL;
-
-  ASSERT_EQ(0, someList);
-  ASSERT_EQ(1, llist_addToTail(1, &someList));
-  // llist_printList(someList);
 }
 
 TEST(LinkedListTest, AddNodeToNullList) {
@@ -52,14 +24,11 @@ TEST(LinkedListTest, AddNodeToNullList) {
 }
 
 TEST(LinkedListTest, HappyGetLength) {
-  llist_node *someList;
-  llist_node headNode = {0};
+  llist_node *someList = {0};
+  int data = 1;
 
-  headNode.data = 0;
-  headNode.next = NULL;
-  someList = &headNode;
-
-  ASSERT_EQ(1, llist_addToHead(1, &someList));
+  ASSERT_EQ(1, llist_addToHead(data, &someList));
+  ASSERT_EQ(1, llist_addToHead(data, &someList));
   ASSERT_EQ(2, llist_getLength(someList));
   llist_printList(someList);
 }
@@ -69,8 +38,7 @@ TEST(LinkedListTest, GetLengthNullList) {
 }
 
 TEST(LinkedListTest, RemoveAll) {
-  llist_node *someList;
-  llist_node headNode = {0};
+  llist_node *someList = {0};
   int dataList[5] = {0,1,2,3,4};
   for (int i = 0; i<5;i++)
   {
@@ -82,11 +50,19 @@ TEST(LinkedListTest, RemoveAll) {
 }
 
 TEST(LinkedListTest, HappyListReverse) {
-  ASSERT_EQ(0,0);
+  llist_node *someList = {0};
+  int dataList[3] = {1,2,3};
+  for (int i = 0; i<3;i++)
+  {
+    llist_addToHead(dataList[i],&someList);
+  }
+  llist_printList(someList);
+  someList = llist_reverse(someList);
+  llist_printList(someList);
 }
 
 TEST(LinkedListTest, HappyCycleCheck) {
-  llist_node *someList = 0;
+  llist_node *someList = {0};
   llist_node node1, node2, node3;
   node1.data = 1;
   node1.next = 0;

@@ -26,7 +26,14 @@ int llist_addToHead(int data, llist_node **listHead)
   }
 
   newNode->data = data;
-  newNode->next = *listHead;
+  if(!*listHead)
+  {
+    newNode->next = NULL;
+  }
+  else
+  {
+    newNode->next = *listHead;
+  }
   *listHead = newNode;
   return 1;
 }
@@ -153,7 +160,26 @@ int llist_containsCycle(const llist_node *listHead)
 
 llist_node* llist_reverse(llist_node *listHead)
 {
-  return NULL;
+  llist_node *prev = NULL;
+  llist_node *runner = NULL;
+  llist_node *advance = NULL;
+
+  if(!listHead)
+  {
+    return NULL;
+  }
+  runner = listHead;
+  advance = runner->next;
+  while(advance)
+  {
+    runner->next = prev;
+    prev = runner;
+    runner = advance;
+    advance = runner->next;
+  }
+  runner->next = prev;
+  return runner;
+
 }
 
 #ifdef __cplusplus
