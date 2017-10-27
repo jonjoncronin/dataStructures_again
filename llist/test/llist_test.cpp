@@ -86,7 +86,29 @@ TEST(LinkedListTest, HappyListReverse) {
 }
 
 TEST(LinkedListTest, HappyCycleCheck) {
-  ASSERT_EQ(0,0);
+  llist_node *someList = 0;
+  llist_node node1, node2, node3;
+  node1.data = 1;
+  node1.next = 0;
+  node2.data = 2;
+  node2.next = 0;
+  node3.data = 3;
+  node3.next = 0;
+
+  ASSERT_EQ(0, llist_containsCycle(someList));
+
+  someList = &node1;
+  ASSERT_EQ(0, llist_containsCycle(someList));
+
+  node1.next = &node2;
+  ASSERT_EQ(0, llist_containsCycle(someList));
+
+  node2.next = &node1;
+  ASSERT_EQ(1, llist_containsCycle(someList));
+
+  node2.next = &node3;
+  node3.next = &node2;
+  ASSERT_EQ(1, llist_containsCycle(someList));
 }
 
 TEST(LinkedListTest, RemoveDups) {

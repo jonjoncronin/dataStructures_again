@@ -125,7 +125,30 @@ void llist_printList(const llist_node *listHead)
 
 int llist_containsCycle(const llist_node *listHead)
 {
-  return 1;
+  llist_node *fastRunner;
+  llist_node *slowRunner;
+
+  if(!listHead || !listHead->next)
+  {
+    return 0;
+  }
+  fastRunner = listHead->next;
+  slowRunner = listHead;
+
+  while(fastRunner)
+  {
+    if(fastRunner == slowRunner)
+    {
+      return 1;
+    }
+    slowRunner = slowRunner->next;
+    if(!fastRunner->next)
+    {
+      return 0;
+    }
+    fastRunner = fastRunner->next->next;
+  }
+  return 0;
 }
 
 llist_node* llist_reverse(llist_node *listHead)
