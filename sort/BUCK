@@ -1,0 +1,13 @@
+cxx_library(
+    name = 'sort',
+    header_namespace = 'sort',
+    exported_headers = subdir_glob([
+        ('include', '**/*.h'),
+    ]),
+    srcs = glob([
+        'src/**/*.c',
+    ]),
+    visibility = [
+        '//...',
+    ],
+)

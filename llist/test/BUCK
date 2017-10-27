@@ -1,0 +1,9 @@
+cxx_test(
+    name = 'llist_test',
+    srcs = [
+        'llist_test.cpp',
+    ],
+    deps = [
+        '//llist:llist',
+    ],
+)
