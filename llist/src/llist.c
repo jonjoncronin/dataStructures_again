@@ -9,19 +9,62 @@ extern "C" {
 #include <stdlib.h>
 #include <stdio.h>
 
-int llist_addToHead(llist_node *newNode, llist_node **listHead)
+int llist_addToHead(int data, llist_node **listHead)
 {
-  if (!newNode || !*listHead)
+  llist_node *newNode;
+  if (!listHead)
   {
     return -1;
   }
+
+  newNode = (llist_node *)malloc(sizeof(llist_node));
+
+  if (!newNode)
+  {
+    //ran out of memory
+    return -2;
+  }
+
+  newNode->data = data;
   newNode->next = *listHead;
   *listHead = newNode;
   return 1;
 }
 
-int llist_addToTail(llist_node *newNode, llist_node **listHead)
+int llist_addToTail(int data, llist_node **listHead)
 {
+  llist_node *newNode;
+  llist_node *prev, *runner;
+
+  if (!listHead)
+  {
+    return -1;
+  }
+
+  newNode = (llist_node *)malloc(sizeof(llist_node));
+  if (!newNode)
+  {
+    //ran out of memory
+    return -2;
+  }
+  newNode->data = data;
+  newNode->next = NULL;
+
+  if (!*listHead)
+  {
+    *listHead = newNode;
+    return 1;
+  }
+
+  prev = *listHead;
+  runner = *listHead;
+  while (runner)
+  {
+    prev = runner;
+    runner = runner->next;
+  }
+  prev->next = newNode;
+
   return 1;
 }
 

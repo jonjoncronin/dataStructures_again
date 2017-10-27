@@ -6,47 +6,60 @@
 TEST(LinkedListTest, HappyAdd) {
   llist_node *someList;
   llist_node headNode = {0};
-  llist_node newNode = {0};
 
   headNode.data = 0;
   headNode.next = NULL;
   someList = &headNode;
 
-  newNode.data = 1;
-  newNode.next = NULL;
 
-  ASSERT_EQ(1, llist_addToHead(&newNode, &someList));
-  ASSERT_EQ(&newNode, someList);
-
+  ASSERT_EQ(1, llist_addToHead(1, &someList));
+  ASSERT_NE(&headNode, someList);
   llist_printList(someList);
 }
 
-TEST(LinkedListTest, AddNullNode) {
-  ASSERT_EQ(0,0);
+TEST(LinkedListTest, AddToTail) {
+  llist_node *someList;
+  llist_node headNode = {0};
+
+  headNode.data = 0;
+  headNode.next = NULL;
+  someList = &headNode;
+
+  ASSERT_EQ(1, llist_addToTail(1, &someList));
+  ASSERT_EQ(&headNode, someList);
+  llist_printList(someList);
+}
+
+TEST(LinkedListTest, AddToHeadEmptyList) {
+  llist_node *someList = NULL;
+
+  ASSERT_EQ(0, someList);
+  ASSERT_EQ(1, llist_addToHead(1, &someList));
+  llist_printList(someList);
+}
+
+TEST(LinkedListTest, AddToTailEmptyList) {
+  llist_node *someList = NULL;
+
+  ASSERT_EQ(0, someList);
+  ASSERT_EQ(1, llist_addToTail(1, &someList));
+  // llist_printList(someList);
 }
 
 TEST(LinkedListTest, AddNodeToNullList) {
-  ASSERT_EQ(0,0);
-}
-
-TEST(LinkedListTest, AddToTail) {
-  ASSERT_EQ(0,0);
+  ASSERT_EQ(-1, llist_addToHead(1, NULL));
+  ASSERT_EQ(-1, llist_addToTail(1, NULL));
 }
 
 TEST(LinkedListTest, HappyGetLength) {
   llist_node *someList;
   llist_node headNode = {0};
-  llist_node newNode = {0};
 
   headNode.data = 0;
   headNode.next = NULL;
   someList = &headNode;
 
-  newNode.data = 1;
-  newNode.next = NULL;
-
-  ASSERT_EQ(1, llist_addToHead(&newNode, &someList));
-  ASSERT_EQ(&newNode, someList);
+  ASSERT_EQ(1, llist_addToHead(1, &someList));
   ASSERT_EQ(2, llist_getLength(someList));
   llist_printList(someList);
 }
