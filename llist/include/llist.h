@@ -18,7 +18,7 @@ typedef struct _llist_node
 extern int llist_addToHead(int data, llist_node **listHead);
 extern int llist_addToTail(int data, llist_node **listHead);
 extern int llist_getLength(const llist_node *listHead);
-extern int llist_removeAll(llist_node *listHead);
+extern int llist_removeAll(llist_node **listHead);
 extern void llist_printList(const llist_node *listHead);
 
 extern int llist_containsCycle(const llist_node *listHead);

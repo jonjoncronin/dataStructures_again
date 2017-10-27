@@ -69,7 +69,16 @@ TEST(LinkedListTest, GetLengthNullList) {
 }
 
 TEST(LinkedListTest, RemoveAll) {
-  ASSERT_EQ(0,0);
+  llist_node *someList;
+  llist_node headNode = {0};
+  int dataList[5] = {0,1,2,3,4};
+  for (int i = 0; i<5;i++)
+  {
+    llist_addToHead(dataList[i],&someList);
+  }
+  llist_printList(someList);
+  ASSERT_EQ(1, llist_removeAll(&someList));
+  llist_printList(someList);
 }
 
 TEST(LinkedListTest, HappyListReverse) {

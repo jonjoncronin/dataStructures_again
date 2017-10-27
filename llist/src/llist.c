@@ -86,8 +86,20 @@ int llist_getLength(const llist_node *listHead)
   return length;
 }
 
-int llist_removeAll(llist_node *listHead)
+int llist_removeAll(llist_node **listHead)
 {
+  llist_node *runner;
+  if (!listHead || !*listHead)
+  {
+    return 0;
+  }
+
+  while(*listHead)
+  {
+    runner = *listHead;
+    *listHead = runner->next;
+    free(runner);
+  }
   return 1;
 }
 
