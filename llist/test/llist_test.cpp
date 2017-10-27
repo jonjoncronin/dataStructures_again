@@ -65,7 +65,7 @@ TEST(LinkedListTest, HappyGetLength) {
 }
 
 TEST(LinkedListTest, GetLengthNullList) {
-  ASSERT_EQ(0,0);
+  ASSERT_EQ(0, llist_getLength(NULL));
 }
 
 TEST(LinkedListTest, RemoveAll) {
