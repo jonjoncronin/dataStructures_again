@@ -40,7 +40,20 @@ void stack_destroyStack(stack *someStack)
 
 stack_node* stack_pop(stack *someStack)
 {
-  return NULL;
+  stack_node *popped, *minPopped;
+
+  if(!someStack)
+  {
+    return NULL;
+  }
+  popped = someStack->top;
+  someStack->top = someStack->top->next;
+  someStack->stackSize -= 1;
+  minPopped = someStack->minStack;
+  someStack->minStack = someStack->minStack->next;
+  free(minPopped);
+
+  return popped;
 }
 
 int stack_push(int data, stack *someStack)
