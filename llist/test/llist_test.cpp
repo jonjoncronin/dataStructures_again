@@ -42,7 +42,7 @@ TEST(LinkedListTest, RemoveHead) {
   int dataList[5] = {0,1,2,3,4};
   for (int i = 0; i<5;i++)
   {
-    llist_addToHead(dataList[i],&someList);
+    llist_addToTail(dataList[i],&someList);
   }
   llist_printList(someList);
   ASSERT_EQ(1, llist_removeHead(&someList));
@@ -54,7 +54,7 @@ TEST(LinkedListTest, RemoveTail) {
   int dataList[5] = {0,1,2,3,4};
   for (int i = 0; i<5;i++)
   {
-    llist_addToHead(dataList[i],&someList);
+    llist_addToTail(dataList[i],&someList);
   }
   llist_printList(someList);
   ASSERT_EQ(1, llist_removeTail(&someList));
@@ -66,7 +66,7 @@ TEST(LinkedListTest, RemoveAll) {
   int dataList[5] = {0,1,2,3,4};
   for (int i = 0; i<5;i++)
   {
-    llist_addToHead(dataList[i],&someList);
+    llist_addToTail(dataList[i],&someList);
   }
   llist_printList(someList);
   ASSERT_EQ(1, llist_removeAll(&someList));
@@ -116,7 +116,7 @@ TEST(LinkedListTest, RemoveDups) {
   int dataList[10] = {0,0,1,2,3,4,4,5,6,6};
   for (int i = 0; i<10;i++)
   {
-    llist_addToHead(dataList[i],&someList);
+    llist_addToTail(dataList[i],&someList);
   }
   llist_printList(someList);
   llist_removeDuplicates(someList);
@@ -129,7 +129,7 @@ TEST(LinkedListTest, GetNodeAtIndex) {
   int dataList[5] = {0,1,2,3,4};
   for (int i = 0; i<5;i++)
   {
-    llist_addToHead(dataList[i],&someList);
+    llist_addToTail(dataList[i],&someList);
   }
   llist_printList(someList);
 
@@ -137,11 +137,34 @@ TEST(LinkedListTest, GetNodeAtIndex) {
   ASSERT_EQ(2, someNode->data);
 
   someNode = llist_getNode(someList, 0);
-  ASSERT_EQ(4, someNode->data);
-
-  someNode = llist_getNode(someList, 4);
   ASSERT_EQ(0, someNode->data);
 
+  someNode = llist_getNode(someList, 4);
+  ASSERT_EQ(4, someNode->data);
+
   someNode = llist_getNode(someList, 5);
+  ASSERT_EQ(4, someNode->data);
+}
+
+TEST(LinkedListTest, GetNodeKFromEnd) {
+  llist_node *someList = {0};
+  llist_node *someNode;
+  int dataList[5] = {0,1,2,3,4};
+  for (int i = 0; i<5;i++)
+  {
+    llist_addToTail(dataList[i],&someList);
+  }
+  llist_printList(someList);
+
+  someNode = llist_getNodeKFromEnd(someList, 0);
+  ASSERT_EQ(4, someNode->data);
+
+  someNode = llist_getNodeKFromEnd(someList, 1);
+  ASSERT_EQ(3, someNode->data);
+
+  someNode = llist_getNodeKFromEnd(someList, 4);
+  ASSERT_EQ(0, someNode->data);
+
+  someNode = llist_getNodeKFromEnd(someList, 6);
   ASSERT_EQ(0, someNode->data);
 }

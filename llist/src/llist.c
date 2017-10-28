@@ -304,6 +304,34 @@ llist_node* llist_getNode(llist_node *listHead, int index)
   return runner;
 }
 
+llist_node* llist_getNodeKFromEnd(llist_node *listHead, int indexFromEnd)
+{
+  llist_node *runner;
+  llist_node *trailer;
+  int curPosition = 0;
+
+  if(!listHead)
+  {
+    return NULL;
+  }
+  if(indexFromEnd < 0)
+  {
+    return NULL;
+  }
+
+  runner = listHead;
+  trailer = listHead;
+  while(runner->next)
+  {
+    if(curPosition >= indexFromEnd)
+    {
+      trailer = trailer->next;
+    }
+    runner = runner->next;
+    curPosition += 1;
+  }
+  return trailer;
+}
 #ifdef __cplusplus
 }
 #endif
