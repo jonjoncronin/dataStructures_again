@@ -1,0 +1,20 @@
+cxx_library(
+    name = 'stack',
+    header_namespace = 'stack',
+    exported_headers = subdir_glob([
+        ('include', '**/*.h'),
+    ]),
+    srcs = glob([
+        'src/**/*.c',
+    ]),
+    deps = [
+        '//llist:llist',
+    ],
+
+    visibility = [
+        '//...',
+    ],
+    compiler_flags = [
+        '-g',
+    ],
+)

@@ -1,0 +1,12 @@
+cxx_test(
+    name = 'stack_test',
+    srcs = [
+        'stack_test.cpp',
+    ],
+    deps = [
+        '//stack:stack',
+    ],
+    compiler_flags = [
+        '-g',
+    ],
+)
