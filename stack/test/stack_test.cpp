@@ -9,6 +9,7 @@ TEST(StackTest, HappyStackCreate) {
   ASSERT_EQ(0, someStack->stackSize);
   ASSERT_EQ(0, someStack->top);
   ASSERT_EQ(0, someStack->minStack);
+  stack_destroyStack(someStack);
 }
 
 TEST(StackTest, HappyStackDestroy) {
@@ -40,6 +41,7 @@ TEST(StackTest, HappyStackPush) {
     ASSERT_EQ(1,stack_push(data[i],someStack));
   }
   stack_printStack(someStack);
+  stack_destroyStack(someStack);
 }
 
 TEST(StackTest, HappyStackPop) {
@@ -67,4 +69,41 @@ TEST(StackTest, HappyStackPop) {
   ASSERT_EQ(0, someStack->stackSize);
   ASSERT_EQ(0, someStack->top);
   ASSERT_EQ(0, someStack->minStack);
+
+  stack_destroyStack(someStack);
+}
+
+TEST(StackTest, HappyStackPeek) {
+  stack *someStack = NULL;
+  stack_node *peeked = NULL;
+  int data[3] = {0,1,2};
+
+  someStack = stack_createStack();
+
+  for(int i = 0; i<3;i++)
+  {
+    stack_push(data[i],someStack);
+  }
+  stack_printStack(someStack);
+  peeked = stack_peek(someStack);
+  ASSERT_EQ(2, peeked->data);
+
+  stack_destroyStack(someStack);
+}
+
+TEST(StackTest, HappyStackIsEmpty) {
+  stack *someStack = NULL;
+  int data[3] = {0,1,2};
+
+  someStack = stack_createStack();
+  ASSERT_EQ(1, stack_isEmpty(someStack));
+
+  for(int i = 0; i<3;i++)
+  {
+    stack_push(data[i],someStack);
+  }
+  stack_printStack(someStack);
+
+  ASSERT_EQ(0, stack_isEmpty(someStack));
+  stack_destroyStack(someStack);
 }

@@ -92,12 +92,27 @@ int stack_push(int data, stack *someStack)
 
 stack_node* stack_peek(stack *someStack)
 {
-  return NULL;
+  stack_node *peeker;
+
+  if(!someStack)
+  {
+    return NULL;
+  }
+  peeker = someStack->top;
+  return peeker;
 }
 
 int stack_isEmpty(stack *someStack)
 {
-  return 1;
+  if(!someStack)
+  {
+    return 1;
+  }
+  if(someStack->stackSize == 0)
+  {
+    return 1;
+  }
+  return 0;
 }
 
 void stack_printStack(stack *someStack)
