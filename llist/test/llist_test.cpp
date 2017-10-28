@@ -37,6 +37,30 @@ TEST(LinkedListTest, GetLengthNullList) {
   ASSERT_EQ(0, llist_getLength(NULL));
 }
 
+TEST(LinkedListTest, RemoveHead) {
+  llist_node *someList = {0};
+  int dataList[5] = {0,1,2,3,4};
+  for (int i = 0; i<5;i++)
+  {
+    llist_addToHead(dataList[i],&someList);
+  }
+  llist_printList(someList);
+  ASSERT_EQ(1, llist_removeHead(&someList));
+  llist_printList(someList);
+}
+
+TEST(LinkedListTest, RemoveTail) {
+  llist_node *someList = {0};
+  int dataList[5] = {0,1,2,3,4};
+  for (int i = 0; i<5;i++)
+  {
+    llist_addToHead(dataList[i],&someList);
+  }
+  llist_printList(someList);
+  ASSERT_EQ(1, llist_removeTail(&someList));
+  llist_printList(someList);
+}
+
 TEST(LinkedListTest, RemoveAll) {
   llist_node *someList = {0};
   int dataList[5] = {0,1,2,3,4};

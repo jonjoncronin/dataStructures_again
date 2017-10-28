@@ -93,6 +93,60 @@ int llist_getLength(const llist_node *listHead)
   return length;
 }
 
+int llist_removeHead(llist_node **listHead)
+{
+  llist_node *nodeToDelete;
+  llist_node *newHead = NULL;
+
+  if(!listHead)
+  {
+    return 0;
+  }
+  if(!*listHead)
+  {
+    return 0;
+  }
+
+  nodeToDelete = *listHead;
+  newHead = nodeToDelete->next;
+  *listHead = newHead;
+  free(nodeToDelete);
+  return 1;
+}
+
+int llist_removeTail(llist_node **listHead)
+{
+  llist_node *nodeToDelete;
+  llist_node *prev;
+  if(!listHead)
+  {
+    return 0;
+  }
+  if(!*listHead)
+  {
+    return 0;
+  }
+
+  prev = *listHead;
+  nodeToDelete = *listHead;
+
+  if(!nodeToDelete->next)
+  {
+    *listHead = NULL;
+    free(nodeToDelete);
+    return 1;
+  }
+
+  while(nodeToDelete->next)
+  {
+    prev = nodeToDelete;
+    nodeToDelete = nodeToDelete->next;
+  }
+  prev->next = NULL;
+  free(nodeToDelete);
+  return 1;
+}
+
 int llist_removeAll(llist_node **listHead)
 {
   llist_node *runner;
