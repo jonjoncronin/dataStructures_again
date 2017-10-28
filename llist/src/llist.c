@@ -236,6 +236,47 @@ llist_node* llist_reverse(llist_node *listHead)
 
 }
 
+void llist_removeDuplicates(llist_node *listHead)
+{
+  llist_node *checker;
+  llist_node *runner;
+  llist_node *prev;
+
+  if(!listHead || !listHead->next)
+  {
+    return;
+  }
+  runner = listHead;
+  prev = listHead;
+  checker = listHead->next;
+
+  while(runner->next)
+  {
+    while(checker)
+    {
+      if(runner->data == checker->data)
+      {
+        llist_node *nodeToDelete = checker;
+        prev->next = checker->next;
+        checker = checker->next;
+        free(nodeToDelete);
+      }
+      else
+      {
+        prev = checker;
+        checker = checker->next;
+      }
+    }
+    if(!runner->next)
+    {
+      return;
+    }
+    runner = runner->next;
+    checker = runner->next;
+    prev = runner;
+  }
+}
+
 llist_node* llist_getNode(llist_node *listHead, int index)
 {
   llist_node *runner;

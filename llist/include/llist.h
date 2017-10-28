@@ -27,6 +27,7 @@ extern void llist_printList(const llist_node *listHead);
 
 extern int llist_containsCycle(const llist_node *listHead);
 extern llist_node* llist_reverse(llist_node *listHead);
+extern void llist_removeDuplicates(llist_node *listHead);
 
 extern llist_node* llist_getNode(llist_node *listHead, int index);
 

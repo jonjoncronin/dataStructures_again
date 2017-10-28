@@ -112,7 +112,15 @@ TEST(LinkedListTest, HappyCycleCheck) {
 }
 
 TEST(LinkedListTest, RemoveDups) {
-  ASSERT_EQ(0,0);
+  llist_node *someList = {0};
+  int dataList[10] = {0,0,1,2,3,4,4,5,6,6};
+  for (int i = 0; i<10;i++)
+  {
+    llist_addToHead(dataList[i],&someList);
+  }
+  llist_printList(someList);
+  llist_removeDuplicates(someList);
+  llist_printList(someList);
 }
 
 TEST(LinkedListTest, GetNodeAtIndex) {
