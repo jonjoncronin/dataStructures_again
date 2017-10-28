@@ -114,3 +114,26 @@ TEST(LinkedListTest, HappyCycleCheck) {
 TEST(LinkedListTest, RemoveDups) {
   ASSERT_EQ(0,0);
 }
+
+TEST(LinkedListTest, GetNodeAtIndex) {
+  llist_node *someList = {0};
+  llist_node *someNode;
+  int dataList[5] = {0,1,2,3,4};
+  for (int i = 0; i<5;i++)
+  {
+    llist_addToHead(dataList[i],&someList);
+  }
+  llist_printList(someList);
+
+  someNode = llist_getNode(someList, 2);
+  ASSERT_EQ(2, someNode->data);
+
+  someNode = llist_getNode(someList, 0);
+  ASSERT_EQ(4, someNode->data);
+
+  someNode = llist_getNode(someList, 4);
+  ASSERT_EQ(0, someNode->data);
+
+  someNode = llist_getNode(someList, 5);
+  ASSERT_EQ(0, someNode->data);
+}

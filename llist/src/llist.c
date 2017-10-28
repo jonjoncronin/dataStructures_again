@@ -236,6 +236,33 @@ llist_node* llist_reverse(llist_node *listHead)
 
 }
 
+llist_node* llist_getNode(llist_node *listHead, int index)
+{
+  llist_node *runner;
+  int curPosition = 0;
+
+  if(!listHead)
+  {
+    return NULL;
+  }
+  if(index < 0)
+  {
+    return NULL;
+  }
+
+  runner = listHead;
+  while(runner->next)
+  {
+    if(index == curPosition)
+    {
+      return runner;
+    }
+    runner = runner->next;
+    curPosition += 1;
+  }
+  return runner;
+}
+
 #ifdef __cplusplus
 }
 #endif
