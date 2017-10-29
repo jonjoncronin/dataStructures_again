@@ -141,13 +141,13 @@ void stack_printStack(stack *someStack)
   return;
 }
 
-static void stack_visitNode(stack_node *root)
+static void stack_printStackInReverseHelper(stack_node *root)
 {
   if(!root)
   {
     return;
   }
-  stack_visitNode(root->next);
+  stack_printStackInReverseHelper(root->next);
   printf("%d\n", root->data);
 }
 
@@ -164,7 +164,7 @@ void stack_printStackInReverse(stack *someStack)
   }
   printf("Stack Contents Reversed (size: %d)\n", someStack->stackSize);
   printf("==================================\n");
-  stack_visitNode(someStack->top);
+  stack_printStackInReverseHelper(someStack->top);
 }
 
 int stack_minValue(stack *someStack)
