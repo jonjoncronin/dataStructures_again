@@ -31,6 +31,7 @@ extern void stack_printStack(stack *someStack);
 extern void stack_printStackInReverse(stack *someStack);
 
 extern int stack_minValue(stack *someStack);
+extern stack* stack_sortStack(stack *someStack);
 
 #ifdef __cplusplus
 }
