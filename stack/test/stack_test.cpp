@@ -127,3 +127,21 @@ TEST(StackTest, HappyStackMinValue) {
 
   stack_destroyStack(someStack);
 }
+
+TEST(StackTest, HappyStackPrintReversed) {
+  stack *someStack = NULL;
+  int minValue;
+  int data[5] = {0,1,2,3,4};
+
+  someStack = stack_createStack();
+
+  for(int i = 0; i<5;i++)
+  {
+    stack_push(data[i],someStack);
+  }
+  stack_printStack(someStack);
+
+  stack_printStackInReverse(someStack);
+
+  stack_destroyStack(someStack);
+}

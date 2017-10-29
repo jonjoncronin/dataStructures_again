@@ -28,6 +28,7 @@ extern stack_node* stack_peek(stack *someStack);
 extern int stack_isEmpty(stack *someStack);
 
 extern void stack_printStack(stack *someStack);
+extern void stack_printStackInReverse(stack *someStack);
 
 extern int stack_minValue(stack *someStack);
 

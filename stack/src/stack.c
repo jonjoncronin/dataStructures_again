@@ -141,6 +141,32 @@ void stack_printStack(stack *someStack)
   return;
 }
 
+static void stack_visitNode(stack_node *root)
+{
+  if(!root)
+  {
+    return;
+  }
+  stack_visitNode(root->next);
+  printf("%d\n", root->data);
+}
+
+void stack_printStackInReverse(stack *someStack)
+{
+  if(!someStack)
+  {
+    printf("Stack doesn't exist\n");
+    return;
+  }
+  if(stack_isEmpty(someStack))
+  {
+    printf("Stack is empty\n");
+  }
+  printf("Stack Contents Reversed (size: %d)\n", someStack->stackSize);
+  printf("==================================\n");
+  stack_visitNode(someStack->top);
+}
+
 int stack_minValue(stack *someStack)
 {
   if(!someStack)
