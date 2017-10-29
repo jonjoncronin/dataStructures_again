@@ -159,6 +159,6 @@ TEST(StackTest, HappyStackSorted) {
     stack_push(data[i],someStack);
   }
   stack_printStack(someStack);
-  sortedStack = stack_sortStack(someStack);
-  stack_printStack(sortedStack);
+  stack_sortStack(someStack);
+  stack_printStack(someStack);
 }

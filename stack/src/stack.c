@@ -184,56 +184,45 @@ int stack_minValue(stack *someStack)
   return someStack->minStack->data;
 }
 
-stack* stack_sortStack(stack *someStack)
+void stack_sortStack(stack *someStack)
 {
   stack *sortedStack = NULL;
-  stack_node *s1Popped;
-  stack_node *s2Popped;
+  stack_node *temp;
 
   if(!someStack || stack_isEmpty(someStack))
   {
-    return NULL;
+    return;
   }
 
   sortedStack = stack_createStack();
 
   while(!stack_isEmpty(someStack))
   {
-    s1Popped = stack_pop(someStack);
-    if(stack_isEmpty(sortedStack))
+    stack_node *peeked;
+    temp = stack_pop(someStack);
+    peeked = stack_peek(sortedStack);
+    while(!stack_isEmpty(sortedStack) && peeked->data > temp->data)
     {
-      stack_push(s1Popped->data, sortedStack);
-      free(s1Popped);
-    }
-    else
-    {
-      int popCount = 0;
-      s2Popped = stack_pop(sortedStack);
-      while(s2Popped &&
-            s1Popped->data > s2Popped->data)
+      stack_node *s2Popped = stack_pop(sortedStack);
+      stack_push(s2Popped->data, someStack);
+      free(s2Popped);
+      peeked = stack_peek(sortedStack);
+      if(!peeked)
       {
-        popCount += 1;
-        stack_push(s2Popped->data, someStack);
-        free(s2Popped);
-        s2Popped = stack_pop(sortedStack);
-      }
-      if(popCount == 0)
-      {
-        stack_push(s2Popped->data,sortedStack);
-        free(s2Popped);
-      }
-      stack_push(s1Popped->data, sortedStack);
-      free(s1Popped);
-      while(popCount != 0)
-      {
-        s1Popped = stack_pop(someStack);
-        stack_push(s1Popped->data, sortedStack);
-        free(s1Popped);
-        popCount -= 1;
+        break;
       }
     }
+    stack_push(temp->data, sortedStack);
+    free(temp);
   }
-  return sortedStack;
+
+  while(!stack_isEmpty(sortedStack))
+  {
+    stack_node *s2Popped = stack_pop(sortedStack);
+    stack_push(s2Popped->data, someStack);
+    free(s2Popped);
+  }
+  return;
 }
 
 #ifdef __cplusplus
