@@ -107,3 +107,23 @@ TEST(StackTest, HappyStackIsEmpty) {
   ASSERT_EQ(0, stack_isEmpty(someStack));
   stack_destroyStack(someStack);
 }
+
+TEST(StackTest, HappyStackMinValue) {
+  stack *someStack = NULL;
+  int minValue;
+  int data[5] = {0,1,2,3,4};
+
+  someStack = stack_createStack();
+  ASSERT_EQ(1, stack_isEmpty(someStack));
+
+  for(int i = 0; i<5;i++)
+  {
+    stack_push(data[i],someStack);
+  }
+  stack_printStack(someStack);
+
+  minValue = stack_minValue(someStack);
+  ASSERT_EQ(0,minValue);
+
+  stack_destroyStack(someStack);
+}

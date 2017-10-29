@@ -141,6 +141,19 @@ void stack_printStack(stack *someStack)
   return;
 }
 
+int stack_minValue(stack *someStack)
+{
+  if(!someStack)
+  {
+    return -1;
+  }
+  if(stack_isEmpty(someStack))
+  {
+    return -1;
+  }
+  return someStack->minStack->data;
+}
+
 #ifdef __cplusplus
 }
 #endif

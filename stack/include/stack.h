@@ -29,6 +29,8 @@ extern int stack_isEmpty(stack *someStack);
 
 extern void stack_printStack(stack *someStack);
 
+extern int stack_minValue(stack *someStack);
+
 #ifdef __cplusplus
 }
 #endif
