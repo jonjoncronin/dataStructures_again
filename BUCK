@@ -7,4 +7,10 @@ cxx_binary(
     srcs = glob([
         'app/src/**/*.c',
     ]),
+    deps = [
+        '//stack:stack',
+    ],
+    compiler_flags = [
+        '-g',
+    ],
 )
