@@ -1,0 +1,12 @@
+cxx_test(
+    name = 'bstree_test',
+    srcs = [
+        'bstree_test.cpp',
+    ],
+    deps = [
+        '//bstree:bstree',
+    ],
+    compiler_flags = [
+        '-g',
+    ],
+)
