@@ -47,6 +47,22 @@ void sort_bubble(int someArray[], int length)
   }
 }
 
+void sort_selection(int someArray[], int length)
+{
+  int minIndex;
+  for(int ii = 0; ii < length - 1; ii++)
+  {
+    minIndex = ii;
+    for(int jj = ii + 1; jj < length; jj++)
+    {
+      if(someArray[jj] < someArray[minIndex])
+      {
+        minIndex = jj;
+      }
+    }
+    swap(&someArray[ii], &someArray[minIndex]);
+  }
+}
 void sort_printArray(int someArray[], int length)
 {
   printf("Array listing\n");
