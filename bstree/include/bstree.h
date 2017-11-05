@@ -25,8 +25,8 @@ typedef struct _bstree
 
 extern bstree* bstree_createTree();
 extern int bstree_insertKey(bstree* someTree, int someKey);
-extern void bsTree_printTreeInorder(bstree* someTree);
-
+extern void bsTree_printTree(bstree* someTree, int type);
+extern bstree_node* bsTree_findKey(bstree *someTree, int key);
 #ifdef __cplusplus
 }
 #endif

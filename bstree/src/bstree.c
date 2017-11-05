@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 #include <bstree/bstree.h>
+#include <llist/llist.h>
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -132,6 +133,26 @@ static bstree_node* bstree_insert(bstree_node *root, int someKey)
   return root;
 }
 
+static bstree_node* bsTree_findNode(bstree_node *root, int key)
+{
+  if(!root)
+  {
+    return NULL;
+  }
+  if(root->key == key)
+  {
+    return root;
+  }
+  else if(key < root->key)
+  {
+    return bsTree_findNode(root->left, key);
+  }
+  else
+  {
+    return bsTree_findNode(root->right, key);
+  }
+}
+
 static void bsTree_printInorder(bstree_node *root)
 {
   if(!root)
@@ -142,6 +163,66 @@ static void bsTree_printInorder(bstree_node *root)
   bsTree_printInorder(root->left);
   printf(" (%d) \n", root->key);
   bsTree_printInorder(root->right);
+}
+
+static void bsTree_printPostorder(bstree_node *root)
+{
+  if(!root)
+  {
+    // we've reached a leaf
+    return;
+  }
+  bsTree_printPostorder(root->left);
+  bsTree_printPostorder(root->right);
+  printf(" (%d) \n", root->key);
+}
+
+static void bsTree_printPreorder(bstree_node *root)
+{
+  if(!root)
+  {
+    // we've reached a leaf
+    return;
+  }
+  printf(" (%d) \n", root->key);
+  bsTree_printPreorder(root->left);
+  bsTree_printPreorder(root->right);
+}
+
+static void bsTree_printBreadthFirst(bstree_node *root)
+{
+  // use the llist library as a queue
+  // add entries to the tail
+  // get the 0th entry to print
+  // remove from the head
+  llist_node *queue = {0};
+  bstree_node *temp;
+
+  temp = root;
+
+  while(temp)
+  {
+    int tempKey;
+    printf(" (%d) \n", temp->key);
+    if(temp->left)
+    {
+      llist_addToTail(temp->left->key, &queue);
+    }
+    if(temp->right)
+    {
+      llist_addToTail(temp->right->key, &queue);
+    }
+    if(queue)
+    {
+      tempKey = queue->data;
+      temp = bsTree_findNode(root, tempKey);
+      llist_removeHead(&queue);
+    }
+    else
+    {
+      temp = NULL;
+    }
+  }
 }
 
 bstree* bstree_createTree()
@@ -181,18 +262,41 @@ int bstree_insertKey(bstree* someTree, int someKey)
   return result;
 }
 
-void bsTree_printTreeInorder(bstree* someTree)
+void bsTree_printTree(bstree* someTree, int type)
 {
   if(!someTree)
   {
     printf("Tree doesn't exist\n");
+    return;
   }
-  else
+  switch(type)
   {
-    bsTree_printInorder(someTree->root);
+    case 1:
+      bsTree_printInorder(someTree->root);
+      break;
+    case 2:
+      bsTree_printPreorder(someTree->root);
+      break;
+    case 3:
+      bsTree_printPostorder(someTree->root);
+      break;
+    case 4:
+      bsTree_printBreadthFirst(someTree->root);
+      break;
+    default:
+      printf("Unsupported print type\n");
+      break;
   }
-
   return;
+}
+
+bstree_node* bsTree_findKey(bstree *someTree, int key)
+{
+  if(!someTree)
+  {
+    return NULL;
+  }
+  return bsTree_findNode(someTree->root, key);
 }
 
 #ifdef __cplusplus

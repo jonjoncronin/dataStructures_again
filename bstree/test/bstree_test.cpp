@@ -29,7 +29,7 @@ TEST(BsTreeTest, HappyTreePrintInorder) {
   bstree *someTree = bstree_createTree();
   bstree *otherTree = bstree_createTree();
   int someValues[7] = {4,2,6,1,3,5,7};
-  int otherValues[7] = {1,2,3,4,5,6,7};
+  int otherValues[7] = {7,6,5,4,3,2,1};
   int result = 0;
 
   for(int i = 0; i < 7; i++)
@@ -43,8 +43,31 @@ TEST(BsTreeTest, HappyTreePrintInorder) {
   ASSERT_EQ(7, otherTree->count);
 
   printf("some tree\n");
-  bsTree_printTreeInorder(someTree);
+  bsTree_printTree(someTree, 4);
   printf("other tree\n");
-  bsTree_printTreeInorder(otherTree);
+  bsTree_printTree(otherTree, 4);
 
+}
+
+TEST(BsTreeTest, HappyTreeFind) {
+  bstree *someTree = bstree_createTree();
+  bstree_node *found = NULL;
+  int someValues[7] = {4,2,6,1,3,5,7};
+  int result = 0;
+  int val = 0;
+
+  for(int i = 0; i < 7; i++)
+  {
+    result = bstree_insertKey(someTree, someValues[i]);
+    ASSERT_EQ(1, result);
+  }
+  found = bsTree_findKey(someTree, 4);
+  ASSERT_EQ(4, found->key);
+
+  found = bsTree_findKey(someTree, 7);
+  ASSERT_EQ(7, found->key);
+
+  found = bsTree_findKey(someTree, 10);
+  val = (found != NULL) ? 1 : 0;
+  ASSERT_EQ(0, val);
 }
