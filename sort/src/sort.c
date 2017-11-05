@@ -127,6 +127,22 @@ void sort_merge(int someArray[], int leftIdx, int rightIdx)
   }
 }
 
+void sort_insertion(int someArray[], int length)
+{
+  for(int keyIdx = 1; keyIdx < length; keyIdx++)
+  {
+    int swappingIdx = keyIdx;
+    for(int checkIdx = keyIdx - 1; checkIdx >= 0; checkIdx--)
+    {
+      if(someArray[swappingIdx] < someArray[checkIdx])
+      {
+        swap(&someArray[swappingIdx], &someArray[checkIdx]);
+        swappingIdx--;
+      }
+      continue;
+    }
+  }
+}
 void sort_printArray(int someArray[], int length)
 {
   printf("Array listing\n");
