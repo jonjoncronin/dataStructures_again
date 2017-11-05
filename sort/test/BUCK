@@ -1,0 +1,12 @@
+cxx_test(
+    name = 'sort_test',
+    srcs = [
+        'sort_test.cpp',
+    ],
+    deps = [
+        '//sort:sort',
+    ],
+    compiler_flags = [
+        '-g',
+    ],
+)
