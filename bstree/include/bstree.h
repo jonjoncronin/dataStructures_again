@@ -14,6 +14,7 @@ typedef struct _bstree_node
   int key;
   struct _bstree_node *left;
   struct _bstree_node *right;
+  int height;
 } bstree_node;
 
 typedef struct _bstree
