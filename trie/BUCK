@@ -1,0 +1,16 @@
+cxx_library(
+    name = 'trie',
+    header_namespace = 'trie',
+    exported_headers = subdir_glob([
+        ('include', '**/*.h'),
+    ]),
+    srcs = glob([
+        'src/**/*.c',
+    ]),
+    visibility = [
+        '//...',
+    ],
+    compiler_flags = [
+        '-g',
+    ],
+)
