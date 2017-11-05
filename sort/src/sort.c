@@ -63,6 +63,70 @@ void sort_selection(int someArray[], int length)
     swap(&someArray[ii], &someArray[minIndex]);
   }
 }
+
+static void merge(int someArray[], int leftIdx, int midIdx, int rightIdx)
+{
+  int ii, jj, k;
+  int leftLen = midIdx - leftIdx + 1;
+  int rightLen = rightIdx - midIdx;
+  int leftArray[leftLen];
+  int rightArray[rightLen];
+
+  for(ii = 0; ii < leftLen; ii++)
+  {
+    leftArray[ii] = someArray[leftIdx + ii];
+  }
+  for(jj = 0; jj < rightLen; jj++)
+  {
+    rightArray[jj] = someArray[midIdx + 1 + jj];
+  }
+
+  ii = 0;
+  jj = 0;
+  k = leftIdx;
+  while(ii < leftLen && jj < rightLen)
+  {
+    if(leftArray[ii] <= rightArray[jj])
+    {
+      someArray[k] = leftArray[ii];
+      ii++;
+    }
+    else
+    {
+      someArray[k] = rightArray[jj];
+      jj++;
+    }
+    k++;
+  }
+
+  //clean up leftovers
+  while(ii < leftLen)
+  {
+    someArray[k] = leftArray[ii];
+    ii++;
+    k++;
+  }
+  while(jj < rightLen)
+  {
+    someArray[k] = rightArray[jj];
+    jj++;
+    k++;
+  }
+
+}
+
+void sort_merge(int someArray[], int leftIdx, int rightIdx)
+{
+  int midIdx;
+  if(rightIdx > leftIdx)
+  {
+    midIdx = (leftIdx + rightIdx) / 2;
+    sort_merge(someArray, leftIdx, midIdx);
+    sort_merge(someArray, midIdx+1, rightIdx);
+    merge(someArray, leftIdx, midIdx, rightIdx);
+  }
+}
+
 void sort_printArray(int someArray[], int length)
 {
   printf("Array listing\n");

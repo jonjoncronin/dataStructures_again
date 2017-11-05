@@ -11,6 +11,8 @@ extern "C" {
 
 extern void sort_bubble(int someArray[], int length);
 extern void sort_selection(int someArray[], int length);
+extern void sort_merge(int someArray[], int leftIdx, int rightIdx);
+
 extern void sort_printArray(int someArray[], int length);
 
 #ifdef __cplusplus
